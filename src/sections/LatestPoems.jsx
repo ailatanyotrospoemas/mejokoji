@@ -78,7 +78,15 @@ export default function LatestPoems({ poemsData }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[100] bg-[#050505] text-[#e5e5e0] overflow-y-auto overflow-x-hidden"
+            
+            /* 1. overscroll-contain: Obliga al navegador a dejar el scroll atrapado en esta caja */
+            className="fixed inset-0 z-[100] bg-[#050505] text-[#e5e5e0] overflow-y-auto overflow-x-hidden overscroll-contain"
+            
+            /* 2. stopPropagation: Evita que el body le robe el evento de la rueda del mouse */
+            onWheel={(e) => e.stopPropagation()}
+            
+            /* 3. data-lenis-prevent: Si en algún momento usas un smooth scroller (como Lenis o Locomotive), esto evita que se rompa */
+            data-lenis-prevent="true"
           >
             
             {/* FONDO CINEMÁTICO: La imagen como textura con degradado */}
